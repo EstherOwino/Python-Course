@@ -1,3 +1,6 @@
+import math
+
+
 #This is my first Python program
 print('I love chips!')
 print("It's really good!")
@@ -63,6 +66,7 @@ print(f"{year}")
 print(f"{pi}")
 print(f"{is_admin}")
 
+
 # Typecasting = the process of converting a variable from one data type to another
 # Typecast functions include str(), int(), float() and bool()
 
@@ -111,3 +115,92 @@ age += 1
 print(f"Hello {name}")
 print("HAPPY BIRTHDAY")
 print(f"You are {age} years old!")
+
+
+#arithmetic operators
+friends = 5
+#friends = friends + 1
+friends += 1
+#friends = friends -2
+friends -= 2
+#friends = friends * 3
+friends *= 3
+#friends = friends / 2
+friends /=2
+#friends = friends ** 2 #to the power of 2 aslo called exponent
+friends **= 2
+remainder = friends % 3
+
+print(friends)
+print(remainder)
+
+
+#built in math related functions
+x = 3.14
+y = -4
+z = 5
+result = round(x)
+print(result)
+result = abs(y) #abs mean absolute value, it is the distance away from 0 as a whole number
+print(result)
+result = pow(z, 2) #power function, we will need a base and an exponent or power
+print(result)
+
+result = max(x,y,z)
+print(result)
+result = min(x,y,z)
+print(result)
+
+print(math.pi)
+print(math.e)
+
+x = 9
+result = math.sqrt(x) #square root of a number
+print(result)
+result = math.pow(x, 2)
+print(result)
+result = math.ceil(4.4)
+print(result)
+result = math.floor(4.6)
+print(result)
+
+
+#if statements
+#if = do some code only IF some condition is True Else do something else
+age = int(input("Enter your age: "))
+if age >= 100:
+  print("You are too old to sign up")
+elif age >= 18:
+  print("You are now signed up!")
+elif age < 0:
+  print("You haven't been born yet!")
+else:
+  print("You must be 18+ to sign up")
+
+response = input("Would you like food? (Y/N): ")
+# == is the comparison operator
+# = is the assignment operator
+if response == "Y": 
+  print("Have some food!")
+else:
+  print("No food for you!")
+
+name = input("Enter your name: ")
+if name == "":
+  print("You did not type in your name!")
+else:
+  print(f"Hello {name}")
+
+for_sale = True
+if for_sale:
+  print("This item is for sale")
+else:
+  print("This item is NOT for sale")
+
+online = False
+if online:
+  print("The user is online")
+else:
+  print("The user is offline")
+
+

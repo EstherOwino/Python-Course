@@ -39,3 +39,23 @@ a = float(input("Enter the value of a: "))
 b  = float(input("Enter the value of b: "))
 c = math.sqrt(pow(a,2) + pow(b,2))
 print(f"The hypotenus of the triangle is: {c}")
+
+# validate user input exercise
+# 1. username is no more that 12 characters
+# 2. username must not contain spaces
+# 3. username must not contain digits
+print("RULES")
+print("1. username is no more that 12 characters")
+print("2. username must not contain spaces")
+print("3. username must not contain digits")
+username = input("Enter your username: ")
+
+if len(username) <= 12:
+  print(f"Welcome {username}")
+elif not username.find(" ") == -1:
+  print("Your username can't contain spaces")
+elif not username.isalpha():
+  print("Your username can't contain numbers")
+else:
+  print("Your username can't be more than 12 characters")
+  

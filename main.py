@@ -291,3 +291,32 @@ phone_number = input("Enter your phone number: ")
 result = phone_number.count("-") #counts the number of something, this method returns an integer
 result = phone_number.replace("-", "") #replaces something with another thing
 print(result)
+
+#indexing = accessing elements of a sequence using [] (indexing operator)
+#           [start : end : step]
+
+credit_number = "1234-5678-9012-3456"
+print(credit_number[4])
+print(credit_number[:4]) #is the same as the one below
+#                         Python assumes you need everything from the start of the string
+print(credit_number[0:4]) #the starting index is inclusive and the ending index is exclusive
+print(credit_number[5:9])
+print(credit_number[15:]) #Python assumes you need everything till te end of the string
+#                          Does the same thing as the code below
+print(credit_number[15:19])
+print(credit_number[4:])
+print(credit_number[-1]) #if you want the LAST character in a string
+print(credit_number[-2]) #if you want the second LAST character in a string and so on
+print(credit_number[::2])#Python assumes its from the first to the last
+#                         prints every 2nd character of our string, the 1st number is inclusive
+print(credit_number[::3])
+
+last_digits = credit_number[15:]
+last_digits = credit_number[-1:-5]
+last_digits = credit_number[-4:]
+print(f"XXXX-XXXX-XXXX-{last_digits}")
+
+#let's reverse the characters in the string
+credit_number = credit_number[::-1]#-1 reverses the string
+print(credit_number)
+#in te above, we have covered string indexing

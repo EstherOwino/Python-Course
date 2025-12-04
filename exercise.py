@@ -50,12 +50,23 @@ print("2. username must not contain spaces")
 print("3. username must not contain digits")
 username = input("Enter your username: ")
 
-if len(username) <= 12:
-  print(f"Welcome {username}")
+if len(username) > 12:
+  print("Your username can't be more than 12 characters")
 elif not username.find(" ") == -1:
   print("Your username can't contain spaces")
 elif not username.isalpha():
   print("Your username can't contain numbers")
 else:
-  print("Your username can't be more than 12 characters")
+  print(f"Welcome {username}")
+
+print("1. The first letter should be uppercase!")
+print("2. You name should contain #")
+name = input("Enter your name: ")
+if not name == name.capitalize():
+  print("First letter should be a capital letter!")
+elif name.find("#") == -1:
+  print("Enter your name with # included")
+else:
+  print(f"Welcome {name}")
+
   

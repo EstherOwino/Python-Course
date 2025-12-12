@@ -1,6 +1,5 @@
 import math
 
-
 #This is my first Python program
 print('I love chips!')
 print("It's really good!")
@@ -319,4 +318,164 @@ print(f"XXXX-XXXX-XXXX-{last_digits}")
 #let's reverse the characters in the string
 credit_number = credit_number[::-1]#-1 reverses the string
 print(credit_number)
-#in te above, we have covered string indexing
+#in the above, we have covered string indexing
+
+
+# format specifiers = {value:flags} format a value based on what flags are inserted
+
+# :.(number)f = round to that many decimal places (fixed point)
+# :(number) = allocate that many spaces
+# :03 = allocate and zero pad that many spaces
+# :< = left justify
+# :> = right justify
+# :^ = center align
+# :+ = use a plus sign to indicate positive value
+# := = place sign to leftmost position
+# : = insert a space before positive numbers
+# :, = comma separator
+
+price1 = 3000.14159
+price2 = -9870.65
+price3 = 1200.34
+
+print(f"Price 1 is ${price1:.2f}") #f after 2 means floating point number, 
+#2 = number of decimals to be displayed
+# in short .2f rounds a number to 2 decimal places
+print(f"Price 2 is ${price2:.2f}")
+print(f"Price 3 is ${price3:.2f}")
+
+#to allocate space
+print(f"Price 1 is ${price1:10}")
+print(f"Price 2 is ${price2:10}")
+print(f"Price 3 is ${price3:10}")
+
+#allocate and zero pad that many spaces(puts 0 where there is space)
+print(f"Price 1 is ${price1:010}")
+print(f"Price 2 is ${price2:010}")
+print(f"Price 3 is ${price3:010}")
+
+#left justify = they all start on the same line on the left
+print(f"Price 1 is ${price1:<10}")
+print(f"Price 2 is ${price2:<10}")
+print(f"Price 3 is ${price3:<10}")
+
+#right justify = they all end on the same line on the right
+print(f"Price 1 is ${price1:>10}")
+print(f"Price 2 is ${price2:>10}")
+print(f"Price 3 is ${price3:>10}")
+
+#center align = all are aligned at the center
+print(f"Price 1 is ${price1:^10}")
+print(f"Price 2 is ${price2:^10}")
+print(f"Price 3 is ${price3:^10}")
+
+#use a plus sign to indicate positive value
+print(f"Price 1 is ${price1:+}")
+print(f"Price 2 is ${price2:+}")
+print(f"Price 3 is ${price3:+}")
+
+#place sign to leftmost position
+#the numbers that will be displayed below, will be aligned evenly
+#for + numbers, it will put a space the display the number
+#for - numbers, it will put a - sign with no space then display the number
+print(f"Price 1 is ${price1: }")
+print(f"Price 2 is ${price2: }")
+print(f"Price 3 is ${price3: }")
+
+#comma separator
+#the thousand separator which is a comma
+print(f"Price 1 is ${price1:,}")
+print(f"Price 2 is ${price2:,}")
+print(f"Price 3 is ${price3:,}")
+
+#plus sign + thousand separator + decimal precision
+print(f"Price 1 is ${price1:+,.2f}")
+print(f"Price 2 is ${price2:+,.2f}")
+print(f"Price 3 is ${price3:+,.2f}")
+
+#while loop = execute some code WHILE some conditions remain true
+name = input("Enter you name: ")
+while name == "":
+  print("You did not enter you name")
+  name = input("Enter you name: ")
+print(f"Hello {name}")
+
+age = int(input("Enter your age: "))
+while age < 0:
+  print("Age can't be negative")
+  age = int(input("Enter your age: "))
+print(f"Your are {age} years old!")
+
+food = input("Enter a food you like(q to quit): ") #inorder to escape press q
+while not food == "q":
+  print(f"You like {food}")
+  food = input("Enter another food you like(q to quit): ")
+print("bye")
+
+num = int(input("Enter a number between 1 - 10: "))
+while num < 1 or num > 10:
+  print(f"{num} is not valid")
+  num = int(input("Enter a number between 1 - 10: "))
+print(f"Your number is {num}")
+
+#Python compound interest calculator
+
+#Amount(A) = final amount
+#Principle(P) = initial principle balance
+#rate(r) = interesr rate
+#time(t) = number of time periods elapsed
+principle = 0
+rate = 0
+time = 0 #in years
+
+while principle < 0:
+  principle = float(input("Enter the principle amount: "))
+  if principle < 0:
+    print("Principal can't be less than zero")
+
+while rate < 0:
+  rate = float(input("Enter the interest rate: "))
+  if rate < 0:
+    print("Interest rate can't be less than zero")
+
+while time < 0:
+  time = int(input("Enter the time in years: "))
+  if time < 0:
+    print("Time can't be less than zero")
+
+print(principle)
+print(rate)
+print(time)
+
+total = principle * pow((1 + rate/100) , time)
+print(f"Balance after {time} years: Ksh{total:.2f}")
+#the above code does not prompt us, rather it just displays 0 at the end
+
+#the below code will prompt us
+while True:
+  principle = float(input("Enter the principle amount: "))
+  if principle < 0:
+    print("Principal can't be less than zero")
+  else:
+    break
+
+while True:
+  rate = float(input("Enter the interest rate: "))
+  if rate < 0:
+    print("Interest rate can't be less than zero")
+  else:
+    break
+
+while True:
+  time = int(input("Enter the time in years: "))
+  if time < 0:
+    print("Time can't be less than zero")
+  else:
+    break
+
+print(principle)
+print(rate)
+print(time)
+
+total = principle * pow((1 + rate/100) , time)
+print(f"Balance after {time} years: Ksh{total:.2f}")

@@ -126,7 +126,7 @@ friends -= 2
 friends *= 3
 #friends = friends / 2
 friends /=2
-#friends = friends ** 2 #to the power of 2 aslo called exponent
+#friends = friends ** 2 #to the power of 2 also called exponent
 friends **= 2
 remainder = friends % 3
 
@@ -458,6 +458,7 @@ while True:
     print("Principal can't be less than zero")
   else:
     break
+    #break helps to stop being in a loop
 
 while True:
   rate = float(input("Enter the interest rate: "))
@@ -479,3 +480,50 @@ print(time)
 
 total = principle * pow((1 + rate/100) , time)
 print(f"Balance after {time} years: Ksh{total:.2f}")
+
+#for loops = execute a block of code a fixed number of times.
+#            You can iterate over a range, string, sequence, etc.
+
+#iteration/loop over a range
+#(start, end, step)
+for x in range(1, 11):
+  print(x)
+print("HAPPY NEW YEAR!")
+
+for x in reversed(range(1, 11)):
+  print(x)
+print("Hello")
+
+for x in range(10, 0, -1): #for x in range(10, 0) will output nothing
+  print(x)
+print("Hola!")
+
+for x in range(1, 11, 2): 
+  print(x)
+print("Hola! muchachos")
+
+#iteration/loop over a string
+credit_card = "1234-5678-9012-3456"
+for x in credit_card:
+  print(x)
+
+for x in range(1, 21):
+  if x == 13: #13 will be skipped
+    continue
+  else:
+    print(x)
+
+for x in range(1, 21):
+  if x == 13: #13 will not be printed, the loop will stop at 12
+    break
+  else:
+    print(x)
+
+#iteration through a sequence
+rooms = [{"room1"},{"room2"}]
+for x in rooms:
+  print(x)
+
+rooms = [{"room1"},{"room2"}]
+print(rooms[0])
+

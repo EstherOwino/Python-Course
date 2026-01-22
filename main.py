@@ -276,7 +276,7 @@ result = len(name)
 result = name.find("o") #This gives the first occurrence of something eg space, always begins with index 0
 result = name.rfind("o") #This finds the last occurence, r=reverse
 #If Python is not able to locate a given character, it will return -1
-result = name.capitalize() #capitalize the first letter in a 
+result = name.capitalize() #capitalize the first letter in a name 
 result = name.upper()#upper takes all the characters in the string then make then all uppercase
 result = name.lower()
 result = name.isdigit()#returns True or False if a string contains only digits
@@ -527,3 +527,100 @@ for x in rooms:
 rooms = [{"room1"},{"room2"}]
 print(rooms[0])
 
+#nested loop = A loop within another loop (outer, inner)
+#              outer loop:
+#                 inner loop:
+
+for i in range(3): #whatever is inside this loop will be repeated 3 times
+  for x in range(1, 10):
+    # each print by default ends in end="\n"
+    print(x, end="")
+  print() #this will print a newline at the end of @loop
+
+#creating a rectangle using nested loops
+rows = int(input("Enter the number of rows: "))
+columns = int(input("Enter the number of columns: "))
+symbol = input("Enter the symbol to use: ")
+
+for i in range(rows): #similar to for i in range(0,rows):
+  for x in range(0,columns): #similar to for x in range(0,columns):
+    print(symbol, end="")
+  print()
+
+# collection = single "variable" used to store multiple values
+#   List = [] ordered and changeable. Duplicated OK
+#   Set = {} unordered and immutable/unchangeable, but Add/Remove OK.No duplicates
+#   Tuple = () ordered and unchangeable. Duplicates OK. FASTER than Lists
+
+#List
+fruits = ["apple", "orange", "banana", "coconut"] #will be displayed the same way when printed
+
+print(fruits[0:3])
+print(fruits[::2])
+print(fruits[::-1])
+
+for fruit in fruits: #for every fruit in fruits
+  print(fruit)
+
+print(dir(fruits))#dir()lists the different attributes and methods that are available to a collection
+#print(help(fruits))#help() provided descriptions of the attributes and methods in dir()
+print(len(fruits)) #prints the length/number of the elements
+
+#using in we can check whether our value is within a given collection
+#in returns a boolean
+print("apple" in fruits)
+print("pineapple" in fruits)
+
+fruits[0] = "pineapple"
+for fruit in fruits:
+  print(fruit)
+
+fruits.append("pineapple")#append() adds to the end of list
+fruits.remove("coconut")#remove() removes an element
+fruits.insert(0, "apple")
+fruits.sort()
+fruits.reverse()
+#fruits.clear()
+print(fruits.index("apple"))
+print(fruits.count("pineapple"))
+print(fruits)
+
+#Set
+fruits = {"apple", "orange", "banana", "coconut"}#will not be displayed the same way when printed
+#print(dir(fruits))
+#print(help(fruits))
+print(len(fruits))
+print("pineapple" in fruits)#to check whether elements are in our set
+#print(fruits[0]) #we cannot use indexing in a set because they are unordered
+fruits.add("pineapple")
+fruits.remove("apple")
+#fruits.pop()#removes the first element. It is random
+#fruits.clear()
+
+print(fruits)
+
+#Tuple
+fruits = ("apple", "orange", "banana", "coconut")
+#print(dir(fruits))
+#print(help(fruits))
+print(len(fruits))
+print("pineapple" in fruits)
+print(fruits.index("apple"))
+print(fruits.count("coconut"))
+for fruit in fruits:
+  print(fruit)
+
+print(fruits)
+
+#2dlist = [list1, list2] #This is a list made up of a list
+fruits =     ["apple", "orange", "banana", "coconut"]
+vegetables = ["celery", "carrots", "potatoes"]
+meats =      ["chicken", "fish", "turkey"]
+
+groceries = [fruits, vegetables, meats]
+print(groceries[1][2]) #row column
+
+for collection in groceries:
+  for food in collection:
+    print(food, end=" ")
+  print()

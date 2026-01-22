@@ -624,3 +624,42 @@ for collection in groceries:
   for food in collection:
     print(food, end=" ")
   print()
+
+#dictionary = a collection of {key:value} pairs
+#             ordered and changeable. No duplicates
+
+capitals = {"Kenya": "Nairobi",
+           "USA": "Washington D.C.",
+           "India": "New Delhi", 
+           "China": "Beijing",
+           "Russia": "Moscow"}
+print(dir(capitals))
+#print(help(capitals))
+print(capitals.get("Kenya"))
+print(capitals.get("Japan")) #if a key does not exist, it returns none
+if capitals.get("Japan"):
+  print("That capital exists")
+else:
+  print("That capital does not exist")
+capitals.update({"Germany": "Berlin"})
+capitals.update({"USA": "Detroid"})
+capitals.pop("China")
+capitals.popitem()#removes the latest/last key:value pair
+#capitals.clear()
+keys = capitals.keys()#to get all of the keys within the dictionary but not the values
+print(keys)#This returns a list of keys
+for key in keys:
+  print(key)
+
+values = capitals.values()#to get all the values within a dictionary
+print(values)
+for value in values:
+  print(value)
+
+items = capitals.items()
+print(items) #returns a dictionary object that resembles a 2d list of tuple
+
+for key, value in capitals.items():
+  print(f"{key}: {value}")
+
+print(capitals)

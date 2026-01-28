@@ -583,6 +583,7 @@ fruits.reverse()
 #fruits.clear()
 print(fruits.index("apple"))
 print(fruits.count("pineapple"))
+fruits.pop() #removes the last element
 print(fruits)
 
 #Set

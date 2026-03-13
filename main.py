@@ -487,7 +487,7 @@ print(f"Balance after {time} years: Ksh{total:.2f}")
 
 #iteration/loop over a range
 #(start, end, step)
-for x in range(1, 11):
+for x in range(1, 11): #range only works with integers
   print(x)
 print("HAPPY NEW YEAR!")
 

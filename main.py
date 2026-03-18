@@ -749,3 +749,27 @@ def count(end, start=0):
     time.sleep(1)
   print("DONE!")
 count(30,15)
+
+#keyword arguments = an argument preceded by an identifier
+#                    helps with readability
+#                    order of arguments doesn't matter
+#                    1. positional 2. default 3. KEYWORD 4. arbitrary
+def hello(greeting, title, first, last):
+  print(f"{greeting} {title} {first.capitalize()} {last.capitalize()}")
+#positional arguments should always come before keyword arguments
+hello("Hello", title = "Madam",last= "owino", first="esther")
+hello("Hello", "Mr", "spongebob", "squarepants")
+
+for x in range(1, 11):
+  #end is a keyword statement found within the print function
+  print(x, end= " ")
+print()
+
+print("1","2","3","4","5", sep="-")
+
+#function to generate phone number
+def get_phone(country, area, first, last):
+  return f"{country}-{area}-{first}-{last}"
+
+phone_num = get_phone(country=1, area=123, first=456, last=789)
+print(phone_num)

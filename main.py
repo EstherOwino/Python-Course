@@ -773,3 +773,54 @@ def get_phone(country, area, first, last):
 
 phone_num = get_phone(country=1, area=123, first=456, last=789)
 print(phone_num)
+
+#arbitrary arguments = varying amount of arguments, we don't know how many 
+#                      arguments a user will pass in when invoking a function
+# To accept a varying number of variables, developers can use args and kwargs
+# *args(arguments)            = allows you to pass multiple non-key arguments
+# **kwargs(keyword arguments) = allows you to pass multiple keyword-arguments
+#                             * = unpacking operator
+#                             1. positional 2. default 3. KEYWORD 4. arbitrary
+# invoking a function with *args will be packed into tuples
+# invoking a function with *kwargs will be packed into a dictionary
+
+# other variable names apart from args can also be used 
+def add(*args):
+  total = 0
+  for arg in args:
+    total += arg
+  return total
+
+print(add(1,2,3))
+
+def display_name(*args):
+  #print(type(args))
+  for arg in args:
+    print(arg, end=" ")
+  print()
+display_name("Esther", "Achieng'", "Owino")
+
+def print_address(**kwargs):
+  print(type(kwargs))
+  print(kwargs)
+  for key, value in kwargs.items():
+    print(f"{key}: {value}")
+print_address(street="123 Fake St", apt="100", city="Detroit", state="MI", zip="54321")
+
+def shipping_label(*args, **kwargs):
+  for arg in args:
+    print(arg, end=" ")
+  print()
+
+  if "apt" in kwargs:
+    #use single quotes for street as Python gets confused t0 where the quotes end if there are double quotes
+    print(f"{kwargs.get('street')} {kwargs.get('apt')}")
+  elif "pobox" in kwargs:
+    print(f"{kwargs.get('street')}")
+    print(f"{kwargs.get('pobox')}")
+  else:
+    print(f"{kwargs.get('street')}")
+  print(f"{kwargs.get('city')} {kwargs.get('state')} {kwargs.get('zip')}")
+
+shipping_label("Dr.", "Spongebob", "Squarepants", "III",
+               street="123 Fake St", pobox="PO box #1001", city="Detroit", state="MI", zip="54321")

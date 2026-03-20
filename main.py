@@ -589,6 +589,7 @@ fruits.pop() #removes the last element
 print(fruits)
 
 #Set
+#sets cannot be reversed
 fruits = {"apple", "orange", "banana", "coconut"}#will not be displayed the same way when printed
 #print(dir(fruits))
 #print(help(fruits))
@@ -824,3 +825,60 @@ def shipping_label(*args, **kwargs):
 
 shipping_label("Dr.", "Spongebob", "Squarepants", "III",
                street="123 Fake St", pobox="PO box #1001", city="Detroit", state="MI", zip="54321")
+
+#iterables = an object/collection that can return its elements one at a time,
+#            allowing it to be iterated over in a loop
+
+#an example of a dictionary iterable
+my_dictionary = {"A":1, "B":2, "C":3}
+for key, value in my_dictionary.items():
+  print(f"{key} = {value}")
+
+# Membership operators = used to test whether a value or a variable is found in a sequence
+#                        (string, list, tuple, set or dictionary)
+#                         1. in
+#                         2. not in
+word = "APPLE"
+letter = input("Guess a letter in the secret word: ")
+if letter not in word:
+  print(f"{letter} was not found")
+else:
+  print(f"There is a {letter}")
+
+# Example game
+print("-----Guess the words game-----")
+word = "APPLE"
+print(f"The word contains {len(word)} characters")
+guess_letters = []
+for character in range(len(word)):
+  letter = input("Guess a letter in the secret word: ").upper()
+  guess_letters.append(letter)
+print(f"Your guesses are: {guess_letters}")
+print(f"The word is: {word}")
+
+#membership operators with sets
+students = {"Spongebob", "Patrick", "Sandy"}
+student = input("Enter a name of a student: ").capitalize()
+if student in students:
+  print(f"{student} is a student")
+else:
+  print(f"{student} was not found")
+
+#membership operators with dictionaries
+grades = {"Sandy": "A", 
+          "Squidward": "B",
+          "Spongebob": "C",
+          "Patrick": "D"}
+student = input("Enter the name of a student: ")
+if student in grades: 
+  print(f"{student}'s grade is {grades[student]}")
+  #print(f"{student}'s grade is {grades.get(student)}")
+else:
+  print(f"{student} was not found")
+
+#Membership operators with strings
+email = "spongebobsquarepants010@gmail.com"
+if "@" and "." in email:
+  print("Valid email")
+else:
+  print("Invalid email")

@@ -882,3 +882,59 @@ if "@" and "." in email:
   print("Valid email")
 else:
   print("Invalid email")
+
+#List comprehension = A concise way to create lists in Python
+#                     Compact and easier to read thar traditional loops
+#                     [expression for value in iterable if condition]
+
+doubles = [] #traditional loop
+for x in range(1,11):
+  doubles.append(x*2)
+print(doubles)
+
+doubles = [x*2 for x in range(1,11)]#list comprehension, condition is optional
+print(doubles)
+
+triples = [y*3 for y in range(1,11)]#condition is optional
+print(triples)
+
+squares = [math.pow(z,2) for z in range(1,11)]#condition is optional
+print(squares)
+
+fruits = ["apple","orange","banana","coconut"]
+for fruit in fruits:
+  print(fruit.upper(), end=" ")
+print()
+
+fruits = [fruit.upper() for fruit in ["apple","orange","banana","coconut"]]
+print(fruits)
+
+#take the first letter and put it in a new list
+first_letter = []
+for fruit in fruits:
+  first_letter.append(fruit[0])
+print(first_letter)
+
+fruits = [fruit[0] for fruit in fruits]
+print(fruits)
+
+numbers = [abs(x) for x in [1, -2, 3, -4, 5, -6]]
+print(numbers)
+
+#using conditions
+numbers = [1, -2, 3, -4, 5, -6, -7, 8]
+positive_nums = [num for num in numbers if num>=0]
+print(positive_nums)
+
+negative_nums = [num for num in numbers if num<0]
+print(negative_nums)
+
+even_nums = [num for num in numbers if num % 2 == 0]
+print(even_nums)
+
+odd_nums = [num for num in numbers if not num % 2 == 0]
+print(odd_nums)
+
+grades = [85, 42, 79, 90, 56, 61, 30]
+passing_grades = [grade for grade in grades if grade >= 60]
+print(passing_grades)

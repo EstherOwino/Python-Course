@@ -1032,3 +1032,28 @@ def grading():
     case _:
       return "Invalid marks!"
 print(grading())
+
+#3 ways to import
+#import math
+#import math as m #renaming an in-built module
+from math import pi #can however cause naming conficts when created again in current file
+
+#module = a file containing code you want to include in your program
+#         use 'import' to include a module {built-in or your own}
+#         useful to break up a large program reusable separate files
+print(help("modules"))#for a list of all modules found within the standard Python library
+#to list all the different variables and functions found in a module, you can 
+#place the name of the module #within the help function
+print(help("math"))
+
+print(pi)
+
+#import math
+import example
+
+#in python, if you want aceess to something from another file, import the file as a file name
+result = example.pi
+print(result)
+print(example.area(10))
+print(example.square(13))
+print(f"{example.circumference(3):.2f}")

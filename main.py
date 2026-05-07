@@ -1033,27 +1033,83 @@ def grading():
       return "Invalid marks!"
 print(grading())
 
-#3 ways to import
-#import math
-#import math as m #renaming an in-built module
-from math import pi #can however cause naming conficts when created again in current file
-
 #module = a file containing code you want to include in your program
 #         use 'import' to include a module {built-in or your own}
 #         useful to break up a large program reusable separate files
 print(help("modules"))#for a list of all modules found within the standard Python library
 #to list all the different variables and functions found in a module, you can 
-#place the name of the module #within the help function
+#place the name of the module within the help function
 print(help("math"))
+
+#3 ways to import
+#import math
+#import math as m #renaming an in-built module
+from math import pi #can however cause naming conficts when created again in current file
 
 print(pi)
 
 #import math
 import example
 
-#in python, if you want aceess to something from another file, import the file as a file name
+#in python, if you want aceess something from another file, import the filename without .py
+#this automatically makes everything in that file an export
 result = example.pi
 print(result)
 print(example.area(10))
 print(example.square(13))
 print(f"{example.circumference(3):.2f}")
+
+#variable scope = where a variable is visible and accessible
+#scope resolution = (LEGB) Local -> Enclosed -> Global -> Built-in (LEGB gives the order of operations)
+
+#Local
+def func1():
+  a = 1
+  print(a)
+
+def func2():
+  b = 2
+  print(b)
+
+func1()
+func2()
+
+#Enclosed(an example is having a function declared within another function)
+#example1
+def func1():
+  x = 1
+  def func2():
+    x = 2 #if this x exists which is local it will be printed
+    print(x)
+  func2()
+
+func1()
+
+#example2
+def func1():
+  x = 1
+  def func2():
+    #if a new x is not declared here, the first/enclosed x will be used 
+    print(x)
+  func2()
+
+func1()
+
+#Global
+name = "Esther"
+def func1():
+  print(name)
+
+def func2():
+  print(name)
+
+func1()
+func2()
+#NB: if local / enclosed variables existed, they would be used instead of the global variable
+
+#Built-in
+from math import e
+def func1():
+ print(e)
+# e = 3 #NB: This e is global and it would be printed in the above function if used 
+func1()

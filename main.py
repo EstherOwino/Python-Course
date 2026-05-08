@@ -1113,3 +1113,15 @@ def func1():
  print(e)
 # e = 3 #NB: This e is global and it would be printed in the above function if used 
 func1()
+
+#if __name__ == __main__: (this script can be imported OR run standalone)
+#                          Functions and classes in this module can be reused
+#                          without the main block of code executing
+
+#def main():
+  #Your program goes here
+
+#if __name__ == __main__:
+#  main()
+
+#Codes to be found in script1.py and script2.py 

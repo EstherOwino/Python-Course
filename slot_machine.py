@@ -1,6 +1,13 @@
 # Python Slot Machine
 import random
 
+#main ideas for the game
+#spin rows
+#print rows
+#get payout
+#ask user to play again
+#exit from game
+
 def spin_row():
   symbols = ['🍒', '🍉', '🍋', '🔔', '⭐']
   results = []

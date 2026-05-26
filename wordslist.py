@@ -1,0 +1,18 @@
+#words for hangman game
+words = ("apple", "river", "mountain", "keyboard", "planet", "orange", "tiger",
+    "window", "garden", "pencil", "camera", "ocean", "forest", "rocket",
+    "village", "diamond", "library", "school", "sunshine", "thunder",
+    "blanket", "mirror", "bridge", "castle", "notebook", "guitar",
+    "airplane", "bicycle", "lantern", "whisper", "volcano", "backpack",
+    "rainbow", "candle", "desert", "waterfall", "compass", "festival",
+    "journey", "market", "painting", "treasure", "umbrella", "vacation",
+    "wildlife", "zebra", "adventure", "battery", "chocolate", "dolphin",
+    "elevator", "fireplace", "glacier", "hamburger", "island", "jacket",
+    "kangaroo", "lemonade", "microscope", "necklace", "orchard", "parrot",
+    "quartz", "restaurant", "sandwich", "telephone", "universe", "violin",
+    "watermelon", "xylophone", "yogurt", "zeppelin", "anchor", "balloon",
+    "cactus", "drumstick", "engine", "feather", "galaxy", "helmet",
+    "igloo", "jungle", "kayak", "lighthouse", "magnet", "narwhal",
+    "ostrich", "penguin", "quiver", "radar", "scooter", "tractor",
+    "uniform", "vortex", "wagon", "yacht", "zipper", "artist",
+    "butterfly", "crystal")

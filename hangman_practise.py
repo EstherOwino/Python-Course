@@ -16,6 +16,9 @@ words = ("pineapple", "pineapple", "pineapple", "pineapple", "pineapple")
 # loop through correct word, check if the guessed letter is found there
 # replace _ with that letter
 
+# number of guesses should not equal the number of words in the word
+# we will use hangman and once that has been commpleted, the game shall end
+
 print("****************************")
 print("        HANGMAN GAME        ")
 print("****************************")
@@ -111,7 +114,3 @@ else:
   print("**********************************")
   print("Thanks for playing! Welcome again!")
   print("**********************************")
-
-
-# number of guesses should not equal the number of words in the word
-# we will use hangman and once that has been commpleted, the game shall end

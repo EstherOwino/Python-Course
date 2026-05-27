@@ -1162,3 +1162,30 @@ for letter in cipher_text:
   plain_text += chars[index]
 print(f"encrypted message: {cipher_text}")
 print(f"original message: {plain_text}")
+
+# object = A "bundle" of related attributes (variables) and methods (functions)
+#a method is a function that belongs within an object
+#          Ex. phone, cup, book
+#          You need a "class" to create many objects
+
+# class = (blueprint) used to design the structure and layout of an object
+from car import Car
+
+#self, will be provided when object is created
+car1 = Car("Mazda", "2026", "beige", False)
+car2 = Car("Mitsubishi", "2005", "white", True)
+print(car1.model)
+print(car1.year)
+print(car1.color)
+print(car1.for_sale)
+car1.drive()
+car1.stop()
+car1.describe()
+
+print(car2.model)
+print(car2.year)
+print(car2.color)
+print(car2.for_sale)
+car2.drive()
+car2.stop()
+car2.describe()

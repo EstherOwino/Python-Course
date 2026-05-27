@@ -1189,3 +1189,33 @@ print(car2.for_sale)
 car2.drive()
 car2.stop()
 car2.describe()
+
+# class variables = Shared among all instances of a class
+#                   Defined outside the constructor
+#                   Allow you to share data among all objects created from that class
+#                   (with class variables, all objects share one variable)
+#                   (In instance variables, each object has their own version)
+class Student:
+
+  class_year = 2027
+  num_students = 0
+
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+    Student.num_students += 1
+
+student1 = Student("Esther", "21")
+student2 = Student("Spongebob", "30")
+print(student1.name)
+#print(Student.name)...instance variables cannot be assesses via class name
+print(student1.age)
+print(f"My graduating class of {student1.class_year} has {student1.num_students} students")
+
+print(student2.name)
+print(student2.age)
+print(student2.class_year)
+#it's good practise to access a class variable by the name of the class
+#rather than an object create from the class
+print(f"My graduating class of {Student.class_year} has {Student.num_students} students")
+print(Student.num_students)

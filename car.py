@@ -4,6 +4,7 @@ class Car:
   #self means object is being created right now
   #after self, other variables can be written
   def __init__(self, model, year, color, for_sale): #attributes
+    #these variables are called instance variables since they are defined inside the constructor
     self.model = model
     self.year = year
     self.color = color

@@ -1,6 +1,6 @@
 #Hangman in Python
 import random
-words = ("mango", "orange", "peach", "lemon", "melon")
+words = ("pineapple", "pineapple", "pineapple", "pineapple", "pineapple")
 
 #ideas
 #we will guess letters of the word based on how many characters are there
@@ -11,6 +11,10 @@ words = ("mango", "orange", "peach", "lemon", "melon")
 
 #problem with duplicate letters, it only takes the index of the first letter
 #fix for words that are not in option word
+
+# I now want to work with duplicate letters
+# loop through correct word, check if the guessed letter is found there
+# replace _ with that letter
 
 print("****************************")
 print("        HANGMAN GAME        ")
@@ -26,6 +30,29 @@ print("****************************")
 print("         START GAME         ")
 print("****************************")
 
+hangman_art = {0: ("   ",
+                   "   ", 
+                   "   "),
+               1: (" o ", 
+                   "   ", 
+                   "   "), 
+               2: (" o ", 
+                   " | ", 
+                   "   "), 
+               3: (" o ", 
+                   "/| ", 
+                   "   "), 
+               4: (" o ", 
+                   "/|\\", 
+                   "   "), 
+               #Two \\ have to be used to print \, as \ is used as an escape sequence within a string 
+               5: (" o ", 
+                   "/|\\", 
+                   "/  "), 
+               6: (" o ", 
+                   "/|\\", 
+                   "/ \\")}
+
 def play_game():
   while True: 
     option = random.choice(words)
@@ -40,18 +67,36 @@ def play_game():
     for y in range(len(option)):
       actual_pattern.append("_")
 
-    for x in range(len(option)):
-      letter = input("Enter a letter: ").lower()
-      your_word.append(letter)
+    wrong_guesses = 0
+    #for key in hangman[wrong_guesses]:
+    while "_" in actual_pattern: #has to be changed
+      if wrong_guesses < 6:
+        letter = input("Enter a letter: ").lower()
+        your_word.append(letter)
+      else:
+        break
       
       if letter in option:
-        index = option.index(letter)
-        #print(f"Index: {index}")
-        actual_pattern[index] = letter
+        for i in range(len(option)):
+          if option[i] == letter:
+            actual_pattern[i] = letter
         print(actual_pattern)
+
       else:
         print("Letter not in guess word!")
+        wrong_guesses += 1
+        for line in hangman_art[wrong_guesses]:
+          print(line)
         print(actual_pattern)
+
+        if wrong_guesses >= 6:
+          print("****************************")
+          print("You lose game!😔")
+          print("****************************")
+      if "_" not in actual_pattern:
+        print("****************************")
+        print("You win game!🎉")
+        print("****************************")
     print()
     print(f"The actual word is {option}")
     print()
@@ -66,3 +111,7 @@ else:
   print("**********************************")
   print("Thanks for playing! Welcome again!")
   print("**********************************")
+
+
+# number of guesses should not equal the number of words in the word
+# we will use hangman and once that has been commpleted, the game shall end

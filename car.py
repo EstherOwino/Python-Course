@@ -10,11 +10,15 @@ class Car:
     self.color = color
     self.for_sale = for_sale
 
-  def drive(self): #methods
-    print(f"You drive the {self.color} {self.model}")
+  def drive(self, type): #methods
+    self.type = type
+    print(f"You drive the {self.color} {self.model} {self.type}")
   
   def stop(self):
     print(f"You stop the {self.color} {self.model}")
   
   def describe(self):
     print(f"{self.year} {self.color} {self.model}")
+
+car3 = Car("Suzuki", "2025", "blue", True)
+car3.drive("toyota")

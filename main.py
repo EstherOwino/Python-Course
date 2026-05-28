@@ -1178,7 +1178,7 @@ print(car1.model)
 print(car1.year)
 print(car1.color)
 print(car1.for_sale)
-car1.drive()
+car1.drive("CX5")
 car1.stop()
 car1.describe()
 
@@ -1186,7 +1186,7 @@ print(car2.model)
 print(car2.year)
 print(car2.color)
 print(car2.for_sale)
-car2.drive()
+car2.drive("nissan")
 car2.stop()
 car2.describe()
 
@@ -1219,3 +1219,51 @@ print(student2.class_year)
 #rather than an object create from the class
 print(f"My graduating class of {Student.class_year} has {Student.num_students} students")
 print(Student.num_students)
+
+# Inheritance = Allows a class to inherit attributes and methods from another class
+#               Helps with code reusability and extensibility
+#               class Child(Parent) or class Sub(Super)
+class Animal:
+  def __init__(self, name):
+    self.name = name
+    self.is_alive = True
+
+  def eat(self):
+    print(f"{self.name} is eating")
+
+  def sleep(self):
+    print(f"{self.name} is sleeping")
+
+class Dog(Animal):
+  def speak(self):
+    print("WOOF!")
+
+class Cat(Animal):
+  def speak(self):
+    print("MEOW!")
+
+class Mouse(Animal):
+  def speak(self):
+    print("SQUEEK!")
+
+dog = Dog("Scooby")
+cat = Cat("Garfield")
+mouse = Mouse("Mickey")
+
+print(dog.name)
+print(dog.is_alive)
+dog.eat()
+dog.sleep()
+dog.speak()
+
+print(cat.name)
+print(cat.is_alive)
+cat.eat()
+cat.sleep()
+cat.speak()
+
+print(mouse.name)
+print(mouse.is_alive)
+mouse.eat()
+mouse.sleep()
+mouse.speak()

@@ -1267,3 +1267,50 @@ print(mouse.is_alive)
 mouse.eat()
 mouse.sleep()
 mouse.speak()
+
+# multiple inheritance = inherit from more than one parent class
+#                        C(A, B)
+
+# multilevel inheritance = inherit from a parent which inherits from another parent
+#                          C(B) <- B(A) <- A
+#                          child class has to inherit from parent, 
+#                          then parent(s) will inherit from "grandparent"
+#                          here the child can inherit everything from parent(s) and "grandparent"
+
+class Animal: #think of this as grandparent
+  def __init__(self, name):
+    self.name = name
+
+  def eat(self):
+    print(f"{self.name} is eating")
+
+  def sleep(self):
+    print(f"{self.name} is sleeping")
+
+class Prey(Animal): #think of this as parent
+  def flee(self):
+    print(f"{self.name} is fleeing")
+
+class Predator(Animal): #think of this as parent
+   def hunt(self):
+    print(f"{self.name} is hunting")
+
+class Rabbit(Prey): #think of this as child
+  pass
+
+class Hawk(Predator): #think of this as child
+  pass
+
+class Fish(Prey, Predator): #multiple inheritance, think of this as child
+  pass
+
+rabbit = Rabbit("Bugs")
+hawk = Hawk("Tony")
+fish = Fish("Nemo")
+
+rabbit.flee()
+rabbit.sleep()
+hawk.hunt()
+fish.hunt()
+fish.flee()
+fish.eat()

@@ -1314,3 +1314,117 @@ hawk.hunt()
 fish.hunt()
 fish.flee()
 fish.eat()
+
+#super = Function used in a child class to call methods from a parent class(superclass).
+#        Allows you to extend the functionality of the inherited methods
+#        (extending functionality = using both child and parent methods)
+
+#        The child class is the subclass(Sub) while the parent class is the superclass(Super)
+#        When a child class has it's own contstructor, it eliminates the need for the parent constructor
+#        therefore, if we are interested in what is in the parent constructor, we need super()
+#        when super() is used, everything in the parent constructor will be called
+#        super() is "used" like the parent name itself
+
+class Shape:
+  def __init__(self, color, is_filled):
+    self.color = color
+    self.is_filled = is_filled
+
+  def describe(self):
+    print(f"It is {self.color} and {'filled' if self.is_filled else 'not filled'}")
+
+class Circle(Shape):
+  def __init__(self, color, is_filled, radius):
+    super().__init__(color, is_filled)
+    self.radius = radius
+
+  def describe(self): #method overiding
+    super().describe() #extending functionality of the describe method from parent
+    print(f"It is a circle with an area of {3.14 * self.radius *self.radius}cm^2")
+
+class Square(Shape):
+  def __init__(self, color, is_filled, width):
+    super().__init__(color, is_filled)
+    self.width = width
+  
+  def describe(self): 
+    super().describe() 
+    print(f"It is a square with an area of {self.width *self.width}cm^2")
+
+class Triangle(Shape):
+  def __init__(self, color, is_filled, width, height):
+    super().__init__(color, is_filled)
+    self.width = width
+    self.height = height
+
+  def describe(self): 
+    super().describe() 
+    print(f"It is a triangle with an area of {(self.width *self.height)/2}cm^2")
+
+circle = Circle("red", True, 7)
+square = Square("green", False, 10)
+triangle = Triangle(color="black", is_filled = True, width=14, height=12)
+
+print(circle.color)
+print(f"{circle.radius}cm")
+circle.describe()
+
+print(square.color)
+print(f"{square.width}cm")
+square.describe()
+
+print(triangle.color)
+print(f"{triangle.width}cm")
+print(f"{triangle.height}cm")
+triangle.describe()
+
+#Polymorphism = Greek word that means to "have many forms or faces"
+#               Poly = Many
+#               Morphe = Form
+
+#               TWO WAYS TO ACHIEVE POLYMORPHISM
+#               1. INHERITANCE = An object could be treated of the same type as a parent class
+#               2. "Duck typing" = Object must have necessary attributes/methods
+
+from abc import ABC, abstractmethod
+
+class Shape:
+
+  @abstractmethod
+  #@abstractmethod forces every child class to create that method
+  #So if you're making a Shape class and you want every shape (Circle, Rectangle, Triangle) 
+  #to have its own area() method, use @abstractmethod
+  def area(self):
+    pass
+
+class Circle(Shape):
+  def __init__(self, radius):
+    self.radius = radius
+
+  def area(self):
+    return 3.14 * self.radius ** 2 # to the power of 2
+
+class Square(Shape):
+  def __init__(self, side):
+    self.side = side
+
+  def area(self):
+    return self.side ** 2
+
+class Triangle(Shape):
+  def __init__(self, base, height):
+    self.base = base
+    self.height = height
+
+  def area(self):
+    return self.base * self.height * 0.5
+  
+class Pizza(Circle):
+  def __init__(self, topping, radius):
+    super().__init__(radius)
+    self.topping = topping
+
+shapes = [Circle(4), Square(5), Triangle(6, 7), Pizza("pepperoni", 15)]
+
+for shape in shapes:
+  print(f"{shape.area()}cm^2")

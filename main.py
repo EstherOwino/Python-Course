@@ -1216,7 +1216,7 @@ print(student2.name)
 print(student2.age)
 print(student2.class_year)
 #it's good practise to access a class variable by the name of the class
-#rather than an object create from the class
+#rather than an object created from the class
 print(f"My graduating class of {Student.class_year} has {Student.num_students} students")
 print(Student.num_students)
 
@@ -1488,3 +1488,48 @@ employee3 = Employee("Spongebob", "Cook")
 print(employee1.get_info())
 print(employee2.get_info())
 print(employee3.get_info())
+
+
+#class methods = Allow operations related to the class itself
+#                Take (cls) as the first parameter, which represents the class itself
+#                mostly used when working with class variables 
+#                instance methods take (self)
+
+#Instance methods = Best for operations on instances of the class(objects)
+#Static methods = Best for utility functions that do not need access to class data
+#Class methods = Best for class-level data or require access to the class itself
+
+class Student:
+
+  count = 0
+  total_gpa = 0
+
+  def __init__(self, name, gpa):
+    self.name = name
+    self.gpa = gpa
+    Student.count += 1
+    Student.total_gpa += gpa
+
+  #instance method
+  def get_info(self):
+    return f"{self.name} {self.gpa}"
+  
+  #class method
+  @classmethod
+  def get_count(cls):
+    return f"Total number of students: {cls.count}"
+  
+  @classmethod
+  def get_average_gpa(cls):
+    if cls.count == 0:
+      return 0
+    else:
+      return f"Average gpa: {cls.total_gpa / cls.count:.2f}"
+  
+print(Student.get_count())
+student1 = Student("Spongebob", 3.2)
+student2 = Student("Patrick", 2.0)
+student3 = Student("Sandy", 4.0)
+
+print(Student.get_count()) #//print(student1.get_count()) #best practise is to use class name
+print(Student.get_average_gpa())

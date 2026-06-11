@@ -1533,3 +1533,121 @@ student3 = Student("Sandy", 4.0)
 
 print(Student.get_count()) #//print(student1.get_count()) #best practise is to use class name
 print(Student.get_average_gpa())
+
+
+#Magic methods = Dunder methods (double underscore) __init__, __str__, __eq__
+#                They are automatically called by many of Python's built-in operations.
+#                They allow developers to define or customize the behaviour of objects
+
+class Book:
+  def __init__(self, title, author, num_pages):
+    self.title = title
+    self.author = author
+    self.num_pages = num_pages
+
+  def __str__(self):
+    #when I print print(book1), it returns a memory address
+    #instead of having that, we can customize that behaviour
+    return f"'{self.title}' {self.author}"
+  
+  def __eq__(self, other):
+    # when I print(book1 == book2) it returns false
+    # this is because memory addresses are different
+    # that can be customised here
+    return self.title == other.title and self.author == other.author
+  
+  def __lt__(self, other): #lt = less than
+    return self.num_pages < other.num_pages
+  
+  def __gt__(self, other): #gt = greater than
+    return self.num_pages > other.num_pages
+  
+  def __add__(self, other): #adds
+    return f"{self.num_pages + other.num_pages} pages"
+  
+  def __contains__(self, keyword):#pass in parameter keyword for what we are searching for
+    return keyword in self.title or keyword in self.author
+  
+  def __getitem__(self, key):
+    if key == "title":
+      return self.title
+    elif key == "author":
+      return self.author
+    elif key == "num_pages":
+      return self.num_pages
+    else:
+      return f"Key {key} was not found"
+
+book1 = Book("Beyond the horizon", "Brian Okari", 220)
+book2 = Book("Beyond the horizon", "Brian Okari", 220)
+book3 = Book("You are the change, arise and make a difference", "Erick", 300)
+
+print(book3)
+print(book1 == book2)
+#memory addresses are different hence returns false, this can be customised in __eq__
+print(book1 > book2)#uses __gt__
+print(book2 < book3)#generates an error, can ne customised using __lt__ which means less than
+print(book2 + book3)#uses __add__
+print("change" in book3)#uses __contains__...this is for getting keyword
+print(book1["num_pages"])#this is for getting key...uses __getitem__ method
+print(book2["title"])
+print(book3["author"])
+print(book3["None"])
+print(book3[""])
+
+#@Property = Decorator used to define a method as a property (it can be accessed like an attribute)
+#            Benefit: Add additional logic when read, write or delete attributes
+#            Gives you getter, setter and deleter method
+#            getter = read, setter = write, deleter = delete
+
+class Rectangle:
+  def __init__(self, width, height):
+    self._width = width #width with a prefixed _ means that it's private
+    self._height = height #since it's private only to be used inside this class
+                          #can be accessed outside class using the height and width methods
+
+  @property
+  def width(self): #getter method
+    return f"{self._width:.1f}cm" #private classes must be accessed using _ after self.
+
+  @property
+  def height(self): #getter method
+    return f"{self._height:.1f}cm"
+  
+  @width.setter
+  def width(self, new_width):#When attempting to set the width use the setter method
+    if new_width > 0:
+      self._width = new_width
+    else:
+      print("Width must be greater than zero")
+
+  @height.setter
+  def height(self, new_height):#When attempting to set the width use the setter method
+    if new_height > 0:
+      self._height = new_height
+    else:
+      print("Height must be greater than zero")
+
+  @width.deleter
+  def width(self):
+    self._width
+    print("Width has been deleted")
+
+  @height.deleter
+  def height(self):
+    self._height
+    print("Height has been deleted")
+
+rectangle = Rectangle(3,4)
+#print(rectangle._width) #this will give the width of private width however this is not good practise
+#print(rectangle._height)
+rectangle.width = 5 #instead of rectangle.width() since it is a @property
+#Because of @property, Python lets you use it like an attribute
+#Python automatically passes the value on the right-hand side of the assignment to the setter method.
+rectangle.height = 10
+
+del rectangle.width
+del rectangle.height
+
+#print(rectangle.width)
+#print(rectangle.height)

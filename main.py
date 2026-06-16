@@ -1668,13 +1668,16 @@ def add_sprinkles(func):
 
 def add_fudge(func):
   def wrapper(*args, **kwargs):
-    print("You add fudge 🍫")
+    print("*You add fudge 🍫*")
     func(*args, **kwargs)
   return wrapper
 
-@add_sprinkles
-@add_fudge
-def get_ice_cream(flavour): #base function 
+@add_sprinkles #get_ice_cream = add_sprinkles(get_ice_cream) 
+#get_ice_cream = add_sprinkles(get_ice_cream) is written after creating get_ice_cream
+@add_fudge #get_ice_cream = add_fudge(get_ice_cream)
+def get_ice_cream(flavour): #base function
   print(f"Here is your {flavour} icecream 🍦")
 
-get_ice_cream("strawberry")  
+get_ice_cream("strawberry") 
+#we want to add_sprinkles and add_fudge only after we get icecream, 
+#that's why we need the wrapper function

@@ -1681,3 +1681,31 @@ def get_ice_cream(flavour): #base function
 get_ice_cream("strawberry") 
 #we want to add_sprinkles and add_fudge only after we get icecream, 
 #that's why we need the wrapper function
+
+
+#exception = An event that interrupts the flow of a program
+#            (ZeroDivisionError, TypeError, ValueError)
+# ZeroDivisionError = error caused by dividing a number by 0. eg 1/0 
+# TypeError = attempting to perform an operation that is of the wrong data type. eg 1+"1"
+# ValueError = error caused by typecasting a value of the wrong data type. eg.int("pizza")
+#             1.try, 2.except, 3.finally
+# any code that is dangerous eg giving an input of 0 and could cause an error is placed in try block. 
+# eg anytime we accept user input cause user could type anything
+
+try:
+  number = int(input("Enter a number: "))
+  print(1/number)
+except ZeroDivisionError:
+  print("You can't divide by zero!")
+except ValueError:
+  print("Enter only numbers please!")
+except Exception: #for unseen exceptions
+  print("Something went wrong!")
+#You can catch all error using except Exception
+#eg except Exception:
+#     print("Something went wrong!")
+#However this is bad practise coz it gives a broad view of the error instead of being specific
+
+finally:#always executes regardless of whether their is an exception or not, 
+#        usually for cleanup eg.handling files(opening and closing files)
+  print("Do some cleanup here")

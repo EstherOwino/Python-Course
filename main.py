@@ -1,6 +1,7 @@
 import math
 import random
 import time
+import os #providdes a way for Python programs to interact with the os
 
 #This is my first Python program
 print('I love chips!')
@@ -1709,3 +1710,34 @@ except Exception: #for unseen exceptions
 finally:#always executes regardless of whether their is an exception or not, 
 #        usually for cleanup eg.handling files(opening and closing files)
   print("Do some cleanup here")
+
+
+#Python file detection
+#os will be imported at the top 
+
+file_path1 = "stuff/test.txt" #this is a relative file path
+file_path2 = "C:/Users/essya/Desktop/test" #this is an absolute file path
+#file_path2 = "C:\\Users\\essya\\Desktop\\test.txt" #this can also be used for the above
+
+if os.path.exists(file_path1):
+  print(f"The location '{file_path1}' exists")
+
+  if os.path.isfile(file_path1):#checks if a file is a file and not a directory/folder
+    print("That is a file")
+  elif os.path.isdir(file_path1):#checks for a directory/folder
+    print("That is a directory")
+
+else:
+  print("That location doesn't exist")
+
+
+if os.path.exists(file_path2):
+  print(f"The location '{file_path2}' exists")
+
+  if os.path.isfile(file_path2):#checks if a file is a file and not a directory
+    print("That is a file")
+  elif os.path.isdir(file_path2):#checks for a directory
+    print("That is a directory")
+
+else:
+  print("That location doesn't exist")

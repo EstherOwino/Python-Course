@@ -1741,3 +1741,82 @@ if os.path.exists(file_path2):
 
 else:
   print("That location doesn't exist")
+
+
+#Python writing files (.txt, .json, .csv)
+
+txt_data1 = "I love chips"
+
+file_path1 = "output.txt"
+
+with open(file_path1, "w") as file: #to create a file, "w" is to write
+  #with open(file = file_path, mode = "w") as file: 
+  #with wraps a block of code to execute, if we open a file, with will also close that file
+  #hence we don't need to manually close files
+  #open() returns a file object
+  #"w" will write if a file exists
+  #"w" creates the file if it doesn't exist or erasing its contents if it does
+  #"x" will also write if a file doesn't exist, if a file exists, there will be an error
+  #"a" appends a file
+  #"r" is to read
+  file.write(txt_data1)
+  print(f"txt file '{file_path1}' was created")
+
+employees = ["Eugine", "Squidward", "Spongebob", "Patrick"]
+
+file_path2 = "C:/Users/essya/Desktop/output.txt"
+
+try:
+  with open(file_path2, "x") as file:
+    for employee in employees:
+      file.write(employee)
+    print(f"txt file '{file_path2}' was created")
+except FileExistsError:
+  print("That file already exists")
+
+try:
+  with open(file_path2, "a") as file:
+    for employee in employees:
+      file.write("\n"+ employee)
+    print(f"txt file '{file_path2}' was created")
+except FileExistsError:
+  print("That file already exists")
+
+
+#.json files(made of key:value pairs)
+import json
+employee = {
+  "name": "Spongebob",
+  "age": 30,
+  "job": "cook"
+}
+
+file_path3 = "C:/Users/essya/Desktop/output.json"
+
+try:
+  with open(file_path3, "w") as file:
+    json.dump(employee, file, indent=4) #converts our dictionary to a json string
+                                        #indent is optional
+    print(f"json file '{file_path3}' was created")
+except FileExistsError:
+  print("That file already exists")
+
+#.csv files(comma separated values)
+import csv
+#json also has to be imported but it was already imported
+employees = [["Name", "Age", "Job"],
+             ["Spongebob", 30, "Cook"],
+             ["Patrick", 37, "Unemployed"],
+             ["Sandy", 27, "Scientist"]]
+
+file_path4 = "C:/Users/essya/Desktop/output.csv"
+
+try:
+  with open(file_path4, "w", newline = "") as file:
+    #newline prevents an extra line from the output
+    writer = csv.writer(file)
+    for row in employees:
+      writer.writerow(row)#accesses whatever is inside individual lists
+    print(f"csv file '{file_path4}' was created")
+except FileExistsError:
+  print("That file already exists")

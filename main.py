@@ -1591,7 +1591,7 @@ print(book2 < book3)#generates an error, can ne customised using __lt__ which me
 print(book2 + book3)#uses __add__
 print("change" in book3)#uses __contains__...this is for getting keyword
 print(book1["num_pages"])#this is for getting key...uses __getitem__ method
-print(book2["title"])
+print(book2["title"])#returns the value in the key
 print(book3["author"])
 print(book3["None"])
 print(book3[""])
@@ -1820,3 +1820,53 @@ try:
     print(f"csv file '{file_path4}' was created")
 except FileExistsError:
   print("That file already exists")
+
+
+# Python reading files(.txt, .json, .csv)
+#.txt file
+file_path1 = "C:/Users/essya/Desktop/test.txt"
+
+try:
+  #with wraps code within a context manager, also closes a file when we open it
+  with open(file_path1, "r") as file:
+    #when we read from a file, it will return a very long string which will be asssigned to variable content
+    content = file.read()
+    print(content)
+except FileNotFoundError:
+  print("That file was not found")
+
+except PermissionError:
+  print("You do not have permission to read that file")
+
+#.json files
+import json
+
+try:
+  file_path2 = "C:/Users/essya/Desktop/output.json"
+  with open(file_path2, "r") as file:
+    content = json.load(file)
+    print(content)
+    print(content["name"])
+
+except FileNotFoundError:
+  print("That file was not found")
+
+except PermissionError:
+  print("You do not have permission to read that file")
+
+#.csv files
+import csv
+try:
+  file_path3 = "C:/Users/essya/Desktop/output.csv"
+  with open(file_path3, "r") as file:
+    content = csv.reader(file)
+    for line in content:
+      print(line)
+      print(line[0])
+    #print(content) prints memory address
+
+except FileNotFoundError:
+  print("That file was not found")
+
+except PermissionError:
+  print("You do not have permission to read that file")

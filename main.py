@@ -1827,7 +1827,7 @@ except FileExistsError:
 file_path1 = "C:/Users/essya/Desktop/test.txt"
 
 try:
-  #with wraps code within a context manager, also closes a file when we open it
+  #with, wraps code within a context manager, also closes a file when we open it
   with open(file_path1, "r") as file:
     #when we read from a file, it will return a very long string which will be asssigned to variable content
     content = file.read()
@@ -1870,3 +1870,29 @@ except FileNotFoundError:
 
 except PermissionError:
   print("You do not have permission to read that file")
+
+
+#Working with dates and times using Python
+import datetime #allows us to work using our computer's clock
+
+#datetime objects of date, today, time, now
+#datetime class
+date = datetime.date(2025, 5, 30)
+today = datetime.date.today()#to get the date right now
+print(date)
+print(today)
+
+time = datetime.time(10, 5, 37)
+now = datetime.datetime.now()
+
+now = now.strftime("%H:%M:%S %m-%d-%Y")#can be found in datetime documentation
+print(time)
+print(now)
+
+target_datetime = datetime.datetime(2020, 1, 2, 12, 30, 1)#date and time have to be passed in
+current_datetime = datetime.datetime.now()
+
+if target_datetime < current_datetime:
+  print("Target date has passed")
+else:
+  print("Target date has NOT passed")

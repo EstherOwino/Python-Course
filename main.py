@@ -1755,7 +1755,7 @@ with open(file_path1, "w") as file: #to create a file, "w" is to write
   #hence we don't need to manually close files
   #open() returns a file object
   #"w" will write if a file exists
-  #"w" creates the file if it doesn't exist or erasing its contents if it does
+  #"w" creates the file if it doesn't exist and erasing its contents if it does
   #"x" will also write if a file doesn't exist, if a file exists, there will be an error
   #"a" appends a file
   #"r" is to read

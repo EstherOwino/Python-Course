@@ -20,7 +20,7 @@ def set_alarm(alarm_time):
       pygame.mixer.music.load(sound_file) #load sound file
       pygame.mixer.music.play() #plays music
 
-      #sound stops playing when program terminates
+      #sound stops playing always after some time even before it has beeen completed
       #we want to continue playing sound_file while that sound_file is busy/still playimg
 
       while pygame.mixer.music.get_busy():

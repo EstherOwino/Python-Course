@@ -1896,3 +1896,47 @@ if target_datetime < current_datetime:
   print("Target date has passed")
 else:
   print("Target date has NOT passed")
+
+
+#multithreading = Used to perform multiple tasks concurrently
+#                 Good for I/O bound tasks like reading files or fetching data from APIs
+#                 threading.Thread(target=my_function)
+
+import threading
+import time
+
+def walk_dog(first, last):
+  time.sleep(8)
+  print(f"You finish walking {first} {last}")
+def take_out_trash(hour):
+  time.sleep(2)
+  print(f"You take out the trash at {hour}")
+def get_mail():
+  time.sleep(4)
+  print("You get the mail")
+
+walk_dog("Scooby", "Doo")
+take_out_trash("12 noon")
+get_mail()
+
+#if function has parameter, use args
+#args is equal to a tuple
+chore1 = threading.Thread(target=walk_dog, args = ("Scooby", "Doo"))
+chore1.start()
+
+#if function has parameter, use args
+#args is equal to a tuple
+#write a comma at the end eg. "Scooby," if there is just 1 parameter to let Python know that is a tuple
+#if a comma is not used, it will be interpreted as a string enclosed in parenthesis and generate an error
+chore2 = threading.Thread(target = take_out_trash, args=("12 noon",))
+chore2.start()
+
+chore3 = threading.Thread(target = get_mail)
+chore3.start()
+
+#join() will wait for the above code to be completed before continuing
+chore1.join()
+chore2.join()
+chore3.join()
+
+print("All chores are complete")

@@ -1940,3 +1940,38 @@ chore2.join()
 chore3.join()
 
 print("All chores are complete")
+
+#How to connect to an API using Python
+import requests
+
+base_url = "https://pokeapi.co/api/v2/"
+
+def get_pokeman_info(name):
+  url = f"{base_url}/pokeman/{name}" #this is the full url
+  response = requests.get(url)
+  print(response)#returns a status code
+
+  if response.status_code == 200:
+    #print("Data retrieved!")
+    pokemon_data = response.json()
+    #our response is a json format
+    #format will be converted into a Python library consisting of key:value pairs using response.json()
+    #response.json() is like a translator that converts the JSON into Python data structures, 
+    #that can be understood by Python
+
+    #print(pokemon_data)
+    return pokemon_data
+  else:
+    print(f"Failed to retrive data {response.status_code}")
+
+#pokemon_name = "pikachu"
+pokemon_name = "typhlosion"
+
+pokeman_info = get_pokeman_info(pokemon_name)
+
+if pokeman_info: #if pokeman_info exists, condition will be true
+  print(f"Name: {pokeman_info["name"].capitalize()}")
+  print(f"Id: {pokeman_info["id"]}")
+  print(f"Height: {pokeman_info["height"]}")
+  print(f"Weight: {pokeman_info["weight"]}")
+  #dictionaries are accessed using keys while strings are accessed using indices

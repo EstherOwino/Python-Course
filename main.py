@@ -1975,3 +1975,32 @@ if pokeman_info: #if pokeman_info exists, condition will be true
   print(f"Height: {pokeman_info["height"]}")
   print(f"Weight: {pokeman_info["weight"]}")
   #dictionaries are accessed using keys while strings are accessed using indices
+
+
+#Graphical user interface(GUI)
+#PyQt5 introduction
+import sys 
+#sys means system
+#sys provides access to variables used/maintained by the interpreter
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtGui import QIcon #to work with icons
+
+#code to get this application running
+class MainWindow(QMainWindow):
+  def __init__(self):
+    super().__init__()#must be here incase child constructor is defined
+    self.setWindowTitle("My cool first GUI")
+    self.setGeometry(0,0,500,500)#(x,y,width,height), this determines where window appears
+    self.setWindowIcon(QIcon("icon.jpg"))
+
+def main():
+  #app object
+  app = QApplication(sys.argv)#by passing this argument, it allows PyQt to process any command line     #                            argument intended for it
+  window = MainWindow()
+  #when we run this program at this point, it won't display the window, for the default bahaviour of a window is to hide it
+
+  window.show()#to show the window, but only shows for a brief moment
+  sys.exit(app.exec_())#ensures clean exit of our program, exec()used for older code bases
+if __name__ == "__main__":
+  main()
+

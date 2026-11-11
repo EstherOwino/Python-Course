@@ -1983,7 +1983,8 @@ if pokeman_info: #if pokeman_info exists, condition will be true
 import sys 
 #sys means system
 #sys provides access to variables used/maintained by the interpreter
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout,
+                             QHBoxLayout, QGridLayout)
 from PyQt5.QtGui import QPixmap#handles images and provides functionality for loading, manipulating and #                               displaying images
 from PyQt5.QtGui import QIcon #to work with icons
 from PyQt5.QtGui import QFont
@@ -2020,21 +2021,70 @@ class MainWindow(QMainWindow):
     #label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)#horizontal center and vertical center
     #label.setAlignment(Qt.AlignCenter)
 
-    label2 = QLabel(self)#self refers to the Window widget hence label2 becomes its child widget
-    label2.setGeometry(0,0,100,250)
+    #label2 = QLabel(self)#self refers to the Window widget hence label2 becomes its child widget
+    #label2.setGeometry(0,0,100,250)
     #we want to pass an image to the label
-    pixmap = QPixmap("icon.jpg")#we don't see image yet until we pass to label
-    label2.setPixmap(pixmap)#image does not scale/doesn't have the right size for the label
-    label2.setScaledContents(True)#will scale according to the size of the label
-    label2.setGeometry(#self.width() - label2.width(),#for top right corner
-                       #for the bottom left corner, x will be set to 0
-                       (self.width() - label2.width())//2,#image placed at the center
+    #pixmap = QPixmap("icon.jpg")#we don't see image yet until we pass to label
+    #label2.setPixmap(pixmap)#image does not scale/doesn't have the right size for the label
+    #label2.setScaledContents(True)#will scale according to the size of the label
+    #label2.setGeometry(#self.width() - label2.width(),#for top right corner
+    #                  #for the bottom left corner, x will be set to 0
+    #                  (self.width() - label2.width())//2,#image placed at the center
                        #// is used because we need our pixels to be whole integers, hence interger #division(//) will be used instead of standard division(/)
                        #self.height() - label2.height(),#for bottom right corner
-                       (self.height() - label2.height())//2,
-                       label2.width(), 
-                       label2.height())
+    #                  (self.height() - label2.height())//2,
+    #                  label2.width(), 
+    #                  label2.height())
+    self.initUI()#to initialize the user interface
+    #normally MainWindow has a structure that is normally incompatible with layout managers eg.#QVBoxLayout, hence a generic widget has to be created i.e.QWidget, add a layout manager.i.e #QVBoxLayout to that widget.i.e QWidget then add that widget to the main window inorder to display #the main layout
+    # in simple terms;
+    # add QVBoxLayout to QWidget then add QWidget to MainWindow 
 
+  def initUI(self):#the code in this function is supposed to run in the constructor but to keep our     #                 constructor from having too much code, we can run some other code here
+    central_widget = QWidget()#this is a generic widget
+    self.setCentralWidget(central_widget) 
+
+    label3 = QLabel("#3", self) 
+    label4 = QLabel("#4", self) 
+    label5 = QLabel("#5", self) 
+    label6 = QLabel("#6", self) 
+    label7 = QLabel("#7", self) 
+    #when running label 3 to 7, they overlap, here is where a layout manager comes in
+    label3.setStyleSheet("background-color:green;")
+    label4.setStyleSheet("background-color:yellow;")
+    label5.setStyleSheet("background-color:maroon;")
+    label6.setStyleSheet("background-color:blue;")
+    label7.setStyleSheet("background-color:red;")
+
+    #for vertical layouts
+    #vbox = QVBoxLayout()
+    #vbox.addWidget(label3)
+    #vbox.addWidget(label4)
+    #vbox.addWidget(label5)
+    #vbox.addWidget(label6)
+    #vbox.addWidget(label7)
+
+    #central_widget.setLayout(vbox)
+
+    #for horizontal layouts
+    #hbox = QHBoxLayout()
+    #hbox.addWidget(label3)
+    #hbox.addWidget(label4)
+    #hbox.addWidget(label5)
+    #hbox.addWidget(label6)
+    #hbox.addWidget(label7)
+
+    #central_widget.setLayout(hbox)
+
+    #grid layouts
+    grid = QGridLayout()
+    grid.addWidget(label3, 0, 0)#with grids, you have to specify a row and column with separate arguments
+    grid.addWidget(label4, 0, 1)
+    grid.addWidget(label5, 1, 0)
+    grid.addWidget(label6, 1, 1)
+    grid.addWidget(label7, 1, 2)
+
+    central_widget.setLayout(grid)
 
 def main():
   #app object

@@ -1,7 +1,7 @@
 import math
 import random
 import time
-import os #providdes a way for Python programs to interact with the os
+import os #provides a way for Python programs to interact with the os
 
 #This is my first Python program
 print('I love chips!')
@@ -282,10 +282,10 @@ result = name.rfind("o") #This finds the last occurence, r=reverse
 result = name.capitalize() #capitalize the first letter in a name 
 result = name.upper()#upper takes all the characters in the string then make then all uppercase
 result = name.lower()
-result = name.isdigit()#returns True or False if a string contains only digits
-#.isdigit() only returns True if what is typed ONLY contains digits
-result = name.isalpha()#returns True or False if a string contains alphabetical characters
-#.isalpha() only returns True if what is typed ONLY contains alphabets
+result = name.isdigit()#returns True if a string contains only digits
+#.isdigit() returns False if what is typed DOES NOT contain digits
+result = name.isalpha()#returns True if a string contains ONLY alphabetical characters
+#.isalpha() only returns False if what is typed DOES NOT contain alphabets
 #in .isdigit and .isalpha(), even a space results in False
 print(result)
 
@@ -1009,7 +1009,7 @@ def is_weekend(day):
   match day:
     case "Sunday" | "Saturday":
       return True
-    case "Monday" | "Tuesday" | "Wenesday" | "Thursday" | "Friday":
+    case "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday":
       return False
     case _:#for else
       return False
@@ -1196,6 +1196,7 @@ car2.describe()
 #                   Allow you to share data among all objects created from that class
 #                   (with class variables, all objects share one variable)
 #                   (In instance variables, each object has their own version)
+#                   They can also be accessed outside a class
 class Student:
 
   class_year = 2027
@@ -1623,7 +1624,7 @@ class Rectangle:
       print("Width must be greater than zero")
 
   @height.setter
-  def height(self, new_height):#When attempting to set the width use the setter method
+  def height(self, new_height):#When attempting to set the height use the setter method
     if new_height > 0:
       self._height = new_height
     else:
@@ -1800,7 +1801,7 @@ try:
     print(f"json file '{file_path3}' was created")
 except FileExistsError:
   print("That file already exists")
-
+  
 #.csv files(comma separated values)
 import csv
 #json also has to be imported but it was already imported
@@ -1982,8 +1983,10 @@ if pokeman_info: #if pokeman_info exists, condition will be true
 import sys 
 #sys means system
 #sys provides access to variables used/maintained by the interpreter
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 from PyQt5.QtGui import QIcon #to work with icons
+from PyQt5.QtGui import QFont
+from PyQt5.QtCore import Qt #the class of Qt is used for alignments
 
 #code to get this application running
 class MainWindow(QMainWindow):
@@ -1992,6 +1995,29 @@ class MainWindow(QMainWindow):
     self.setWindowTitle("My cool first GUI")
     self.setGeometry(0,0,500,500)#(x,y,width,height), this determines where window appears
     self.setWindowIcon(QIcon("icon.jpg"))
+    
+    label = QLabel("Hello", self)#self refers to the window object that we are calling
+    label.setFont(QFont("Arial", 40))
+    label.setGeometry(0,0,500,100)
+    #PyQt has styles that are similar to CSS
+    label.setStyleSheet("color:blue;"
+                        "background-color:red;"
+                        "font-weight: bold;"
+                        "font-style:italic;"
+                        "text-decoration:underline;")
+    #Vertical alignments
+    #label.setAlignment(Qt.AlignTop)#will align our text vertically to the top
+    #label.setAlignment(Qt.AlignBottom)#will align our text vertically to the bottom
+    #label.setAlignment(Qt.AlignVCenter)#will align our text vertically to the center
+
+    #Horizontal alignments
+    #label.setAlignment(Qt.AlignRight)#will align our text horizontally to the right
+    #label.setAlignment(Qt.AlignHCenter)#will align our text horizontally to the center
+    #label.setAlignment(Qt.AlignLeft)#will align our text horizontally to the left
+    #label.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+    #label.setAlignment(Qt.AlignHCenter | Qt.AlignBottom)
+    #label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)#horizontal center and vertical center
+    #label.setAlignment(Qt.AlignCenter)
 
 def main():
   #app object
@@ -2003,4 +2029,3 @@ def main():
   sys.exit(app.exec_())#ensures clean exit of our program, exec()used for older code bases
 if __name__ == "__main__":
   main()
-

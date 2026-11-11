@@ -1984,6 +1984,7 @@ import sys
 #sys means system
 #sys provides access to variables used/maintained by the interpreter
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
+from PyQt5.QtGui import QPixmap#handles images and provides functionality for loading, manipulating and #                               displaying images
 from PyQt5.QtGui import QIcon #to work with icons
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt #the class of Qt is used for alignments
@@ -1996,15 +1997,15 @@ class MainWindow(QMainWindow):
     self.setGeometry(0,0,500,500)#(x,y,width,height), this determines where window appears
     self.setWindowIcon(QIcon("icon.jpg"))
     
-    label = QLabel("Hello", self)#self refers to the window object that we are calling
-    label.setFont(QFont("Arial", 40))
-    label.setGeometry(0,0,500,100)
+    #label = QLabel("Hello", self)#self refers to the window object that we are calling
+    #label.setFont(QFont("Arial", 40))
+    #label.setGeometry(0,0,500,100)
     #PyQt has styles that are similar to CSS
-    label.setStyleSheet("color:blue;"
-                        "background-color:red;"
-                        "font-weight: bold;"
-                        "font-style:italic;"
-                        "text-decoration:underline;")
+    #label.setStyleSheet("color:blue;"
+    #                    "background-color:red;"
+    #                   "font-weight: bold;"
+    #                   "font-style:italic;"
+    #                   "text-decoration:underline;")
     #Vertical alignments
     #label.setAlignment(Qt.AlignTop)#will align our text vertically to the top
     #label.setAlignment(Qt.AlignBottom)#will align our text vertically to the bottom
@@ -2018,6 +2019,22 @@ class MainWindow(QMainWindow):
     #label.setAlignment(Qt.AlignHCenter | Qt.AlignBottom)
     #label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)#horizontal center and vertical center
     #label.setAlignment(Qt.AlignCenter)
+
+    label2 = QLabel(self)#self refers to the Window widget hence label2 becomes its child widget
+    label2.setGeometry(0,0,100,250)
+    #we want to pass an image to the label
+    pixmap = QPixmap("icon.jpg")#we don't see image yet until we pass to label
+    label2.setPixmap(pixmap)#image does not scale/doesn't have the right size for the label
+    label2.setScaledContents(True)#will scale according to the size of the label
+    label2.setGeometry(#self.width() - label2.width(),#for top right corner
+                       #for the bottom left corner, x will be set to 0
+                       (self.width() - label2.width())//2,#image placed at the center
+                       #// is used because we need our pixels to be whole integers, hence interger #division(//) will be used instead of standard division(/)
+                       #self.height() - label2.height(),#for bottom right corner
+                       (self.height() - label2.height())//2,
+                       label2.width(), 
+                       label2.height())
+
 
 def main():
   #app object

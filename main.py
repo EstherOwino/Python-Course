@@ -1984,7 +1984,7 @@ import sys
 #sys means system
 #sys provides access to variables used/maintained by the interpreter
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout,
-                             QHBoxLayout, QGridLayout)
+                             QHBoxLayout, QGridLayout, QPushButton)
 from PyQt5.QtGui import QPixmap#handles images and provides functionality for loading, manipulating and #                               displaying images
 from PyQt5.QtGui import QIcon #to work with icons
 from PyQt5.QtGui import QFont
@@ -2035,26 +2035,33 @@ class MainWindow(QMainWindow):
     #                  (self.height() - label2.height())//2,
     #                  label2.width(), 
     #                  label2.height())
+
+    self.button = QPushButton("Click me!", self)
+    #button is prefixed with self so that it belongs to MainWindow
+    #if it just remains as button, it becomes a local variable and it cannot be used in another function
+
+    self.label8 = QLabel("Hello", self)
+
     self.initUI()#to initialize the user interface
     #normally MainWindow has a structure that is normally incompatible with layout managers eg.#QVBoxLayout, hence a generic widget has to be created i.e.QWidget, add a layout manager.i.e #QVBoxLayout to that widget.i.e QWidget then add that widget to the main window inorder to display #the main layout
     # in simple terms;
     # add QVBoxLayout to QWidget then add QWidget to MainWindow 
 
   def initUI(self):#the code in this function is supposed to run in the constructor but to keep our     #                 constructor from having too much code, we can run some other code here
-    central_widget = QWidget()#this is a generic widget
-    self.setCentralWidget(central_widget) 
+  #  central_widget = QWidget()#this is a generic widget
+  #  self.setCentralWidget(central_widget) 
 
-    label3 = QLabel("#3", self) 
-    label4 = QLabel("#4", self) 
-    label5 = QLabel("#5", self) 
-    label6 = QLabel("#6", self) 
-    label7 = QLabel("#7", self) 
+  #  label3 = QLabel("#3", self) 
+  #  label4 = QLabel("#4", self) 
+  #  label5 = QLabel("#5", self) 
+  #  label6 = QLabel("#6", self) 
+  #  label7 = QLabel("#7", self) 
     #when running label 3 to 7, they overlap, here is where a layout manager comes in
-    label3.setStyleSheet("background-color:green;")
-    label4.setStyleSheet("background-color:yellow;")
-    label5.setStyleSheet("background-color:maroon;")
-    label6.setStyleSheet("background-color:blue;")
-    label7.setStyleSheet("background-color:red;")
+  #  label3.setStyleSheet("background-color:green;")
+  #  label4.setStyleSheet("background-color:yellow;")
+  #  label5.setStyleSheet("background-color:maroon;")
+  #  label6.setStyleSheet("background-color:blue;")
+  #  label7.setStyleSheet("background-color:red;")
 
     #for vertical layouts
     #vbox = QVBoxLayout()
@@ -2077,14 +2084,27 @@ class MainWindow(QMainWindow):
     #central_widget.setLayout(hbox)
 
     #grid layouts
-    grid = QGridLayout()
-    grid.addWidget(label3, 0, 0)#with grids, you have to specify a row and column with separate arguments
-    grid.addWidget(label4, 0, 1)
-    grid.addWidget(label5, 1, 0)
-    grid.addWidget(label6, 1, 1)
-    grid.addWidget(label7, 1, 2)
+  #  grid = QGridLayout()
+  #  grid.addWidget(label3, 0, 0)#with grids, you have to specify a row and column with separate arguments
+  #  grid.addWidget(label4, 0, 1)
+  #  grid.addWidget(label5, 1, 0)
+  #  grid.addWidget(label6, 1, 1)
+  #  grid.addWidget(label7, 1, 2)
 
-    central_widget.setLayout(grid)
+  #  central_widget.setLayout(grid)
+    
+    self.button.setGeometry(150,200,200,100) 
+    self.button.setStyleSheet("font-size:30px;")
+    self.button.clicked.connect(self.on_click)
+
+    self.label8.setGeometry(150,300,200,100)
+    self.label8.setStyleSheet("font-size: 30px")
+
+  def on_click(self):
+    print("Button clicked!")
+    self.button.setText("Clicked!")
+    self.label8.setText("Goodbye")
+    self.button.setDisabled(True)#to disable buttons
 
 def main():
   #app object

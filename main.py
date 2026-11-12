@@ -1984,7 +1984,7 @@ import sys
 #sys means system
 #sys provides access to variables used/maintained by the interpreter
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout,
-                             QHBoxLayout, QGridLayout, QPushButton)
+                             QHBoxLayout, QGridLayout, QPushButton, QCheckBox)
 from PyQt5.QtGui import QPixmap#handles images and provides functionality for loading, manipulating and #                               displaying images
 from PyQt5.QtGui import QIcon #to work with icons
 from PyQt5.QtGui import QFont
@@ -2042,6 +2042,8 @@ class MainWindow(QMainWindow):
 
     self.label8 = QLabel("Hello", self)
 
+    self.checkbox = QCheckBox("Do you like food?", self)
+
     self.initUI()#to initialize the user interface
     #normally MainWindow has a structure that is normally incompatible with layout managers eg.#QVBoxLayout, hence a generic widget has to be created i.e.QWidget, add a layout manager.i.e #QVBoxLayout to that widget.i.e QWidget then add that widget to the main window inorder to display #the main layout
     # in simple terms;
@@ -2098,13 +2100,26 @@ class MainWindow(QMainWindow):
     self.button.clicked.connect(self.on_click)
 
     self.label8.setGeometry(150,300,200,100)
-    self.label8.setStyleSheet("font-size: 30px")
+    self.label8.setStyleSheet("font-size: 30px;")
+
+    self.checkbox.setStyleSheet("font-size: 30px;"
+                                "font-family: Arial;")
+    self.checkbox.setGeometry(10,0,500,100)
+    self.checkbox.setChecked(False)
+    self.checkbox.stateChanged.connect(self.checkbox_changed)
 
   def on_click(self):
     print("Button clicked!")
     self.button.setText("Clicked!")
     self.label8.setText("Goodbye")
     self.button.setDisabled(True)#to disable buttons
+
+  def checkbox_changed(self, state):
+    print(state)#0 means unchecked, 2 means checked
+    if state == Qt.Checked:#Qt.Checked is the same as 2, useful when working with other programmers
+      print("You like food")
+    else:
+      print("You DO NOT like food")
 
 def main():
   #app object

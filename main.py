@@ -1983,8 +1983,8 @@ if pokeman_info: #if pokeman_info exists, condition will be true
 import sys 
 #sys means system
 #sys provides access to variables used/maintained by the interpreter
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout,
-                             QHBoxLayout, QGridLayout, QPushButton, QCheckBox)
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout, QHBoxLayout, 
+                              QGridLayout, QPushButton, QCheckBox, QRadioButton, QButtonGroup)
 from PyQt5.QtGui import QPixmap#handles images and provides functionality for loading, manipulating and #                               displaying images
 from PyQt5.QtGui import QIcon #to work with icons
 from PyQt5.QtGui import QFont
@@ -2044,6 +2044,14 @@ class MainWindow(QMainWindow):
 
     self.checkbox = QCheckBox("Do you like food?", self)
 
+    self.radio1 = QRadioButton("Visa", self)
+    self.radio2 = QRadioButton("Mastercard", self)
+    self.radio3 = QRadioButton("Gift Card", self)
+    self.radio4 = QRadioButton("In-Store", self)
+    self.radio5 = QRadioButton("Online", self)
+    self.button_group1 = QButtonGroup(self)
+    self.button_group2 = QButtonGroup(self)
+
     self.initUI()#to initialize the user interface
     #normally MainWindow has a structure that is normally incompatible with layout managers eg.#QVBoxLayout, hence a generic widget has to be created i.e.QWidget, add a layout manager.i.e #QVBoxLayout to that widget.i.e QWidget then add that widget to the main window inorder to display #the main layout
     # in simple terms;
@@ -2095,11 +2103,11 @@ class MainWindow(QMainWindow):
 
   #  central_widget.setLayout(grid)
     
-    self.button.setGeometry(150,200,200,100) 
+    self.button.setGeometry(150,300,200,100) 
     self.button.setStyleSheet("font-size:30px;")
     self.button.clicked.connect(self.on_click)
 
-    self.label8.setGeometry(150,300,200,100)
+    self.label8.setGeometry(150,400,200,100)
     self.label8.setStyleSheet("font-size: 30px;")
 
     self.checkbox.setStyleSheet("font-size: 30px;"
@@ -2107,6 +2115,31 @@ class MainWindow(QMainWindow):
     self.checkbox.setGeometry(10,0,500,100)
     self.checkbox.setChecked(False)
     self.checkbox.stateChanged.connect(self.checkbox_changed)
+
+    self.radio1.setGeometry(0,50,300,50)
+    self.radio2.setGeometry(0,100,300,50)
+    self.radio3.setGeometry(0,150,300,50)
+    self.radio4.setGeometry(0,250,300,50)
+    self.radio5.setGeometry(0,300,300,50)
+
+    self.setStyleSheet("QRadioButton{"
+                       "font-size: 30px;"
+                       "font-family: Arial;"
+                       "padding: 10px;"
+                       "}")#shortcut for setting style on all radio buttons
+
+    self.button_group1.addButton(self.radio1)
+    self.button_group1.addButton(self.radio2)
+    self.button_group1.addButton(self.radio3)
+
+    self.button_group2.addButton(self.radio4)
+    self.button_group2.addButton(self.radio5)
+
+    self.radio1.toggled.connect(self.radio_button_changed)
+    self.radio2.toggled.connect(self.radio_button_changed)
+    self.radio3.toggled.connect(self.radio_button_changed)
+    self.radio4.toggled.connect(self.radio_button_changed)
+    self.radio5.toggled.connect(self.radio_button_changed)
 
   def on_click(self):
     print("Button clicked!")
@@ -2120,6 +2153,12 @@ class MainWindow(QMainWindow):
       print("You like food")
     else:
       print("You DO NOT like food")
+
+  def radio_button_changed(self):
+    radio_button = self.sender()#returns the widget that sent the signal
+    if radio_button.isChecked():#is a boolean that returns True or False
+      print(f"{radio_button.text()} is selected")
+    
 
 def main():
   #app object

@@ -2189,3 +2189,68 @@ def main():
 if __name__ == "__main__":
   main()
 
+
+import sys 
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QWidget, QHBoxLayout)
+
+class MainWindow(QMainWindow):
+  def __init__(self):
+    super().__init__()
+    self.button3 = QPushButton("#3")#since we are using a layout manager, we don't need to add this button to self
+    self.button4 = QPushButton("#4")
+    self.button5 = QPushButton("#5")
+
+    self.initUI()
+
+  def initUI(self):
+    central_widget = QWidget()
+    self.setCentralWidget(central_widget)
+
+    hbox = QHBoxLayout()
+    hbox.addWidget(self.button3)
+    hbox.addWidget(self.button4)
+    hbox.addWidget(self.button5)
+
+    central_widget.setLayout(hbox)
+
+    self.button3.setObjectName("button3")
+    self.button4.setObjectName("button4")
+    self.button5.setObjectName("button5")
+
+    self.setStyleSheet("""
+      QPushButton{
+        font-size: 40px;
+        font-family: Arial;
+        padding: 15px 75px;
+        margin: 25px;
+        border: 3px solid;
+        border-radius: 15px;
+      }
+      QPushButton#button3{
+        background-color: rgb(255, 71, 71);
+      }
+      QPushButton#button4{
+        background-color: #0cf50c;
+      }
+      QPushButton#button5{
+        background-color: hsl(237, 92%, 70%);
+      }
+      QPushButton#button3:hover{
+        background-color: red;
+      }
+      QPushButton#button4:hover{
+        background-color: green;
+      }
+      QPushButton#button5:hover{
+        background-color: blue;
+      }
+    """)#all CSS that will be written will be in these set of tripple quotes
+    
+
+def main():
+  app = QApplication(sys.argv)
+  window = MainWindow()
+  window.show()
+  sys.exit(app.exec_())
+if __name__ == "__main__":
+  main()

@@ -1984,7 +1984,7 @@ import sys
 #sys means system
 #sys provides access to variables used/maintained by the interpreter
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QWidget, QVBoxLayout, QHBoxLayout, 
-                              QGridLayout, QPushButton, QCheckBox, QRadioButton, QButtonGroup)
+                              QGridLayout, QPushButton, QCheckBox, QRadioButton, QButtonGroup, QLineEdit)
 from PyQt5.QtGui import QPixmap#handles images and provides functionality for loading, manipulating and #                               displaying images
 from PyQt5.QtGui import QIcon #to work with icons
 from PyQt5.QtGui import QFont
@@ -1996,6 +1996,7 @@ class MainWindow(QMainWindow):
     super().__init__()#must be here incase child constructor is defined
     self.setWindowTitle("My cool first GUI")
     self.setGeometry(0,0,500,500)#(x,y,width,height), this determines where window appears
+    self.line_edit = QLineEdit(self)
     self.setWindowIcon(QIcon("icon.jpg"))
     
     #label = QLabel("Hello", self)#self refers to the window object that we are calling
@@ -2051,6 +2052,8 @@ class MainWindow(QMainWindow):
     self.radio5 = QRadioButton("Online", self)
     self.button_group1 = QButtonGroup(self)
     self.button_group2 = QButtonGroup(self)
+
+    self.button2 = QPushButton("Submit", self)
 
     self.initUI()#to initialize the user interface
     #normally MainWindow has a structure that is normally incompatible with layout managers eg.#QVBoxLayout, hence a generic widget has to be created i.e.QWidget, add a layout manager.i.e #QVBoxLayout to that widget.i.e QWidget then add that widget to the main window inorder to display #the main layout
@@ -2141,6 +2144,16 @@ class MainWindow(QMainWindow):
     self.radio4.toggled.connect(self.radio_button_changed)
     self.radio5.toggled.connect(self.radio_button_changed)
 
+    self.line_edit.setGeometry(10,0,200,30)
+    self.line_edit.setStyleSheet("font-size: 20px;"
+                                 "font-family: Arial")
+    self.button2.setGeometry(210,0,100,30)
+    self.button2.setStyleSheet("font-size: 20px;"
+                               "font-family: Arial")
+    self.button2.clicked.connect(self.submit)
+    self.line_edit.setPlaceholderText("Enter your name")# to add a placeholder
+  
+
   def on_click(self):
     print("Button clicked!")
     self.button.setText("Clicked!")
@@ -2158,6 +2171,11 @@ class MainWindow(QMainWindow):
     radio_button = self.sender()#returns the widget that sent the signal
     if radio_button.isChecked():#is a boolean that returns True or False
       print(f"{radio_button.text()} is selected")
+
+  def submit(self):
+    #print("You clicked the button!")
+    text = self.line_edit.text() # returns text inside the input box or text box
+    print(f"Hello {text}")
     
 
 def main():
@@ -2170,3 +2188,4 @@ def main():
   sys.exit(app.exec_())#ensures clean exit of our program, exec()used for older code bases
 if __name__ == "__main__":
   main()
+

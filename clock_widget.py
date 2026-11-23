@@ -28,7 +28,7 @@ class DigitalClock(QWidget):#QWidget is a base class to create our own widgets
                                   "color: hsl(111, 100%, 50%)")#remove ° in hsl values
     self.setStyleSheet("background-color: black")
 
-    # when working with imported fonts
+    # when working with imported fonts, can be found in ds digital
     font_id = QFontDatabase.addApplicationFont("DS-DIGIB.TTF")# for managing and quering fonts available to the application
     font_family = QFontDatabase.applicationFontFamilies(font_id)[0]#returns a list of font names
     my_font = QFont(font_family, 150)
